@@ -74,6 +74,44 @@ rec {
   # a fork of luarocks used to generate nix lua derivations from rockspecs
   luarocks-nix = toLuaModule (callPackage ../development/tools/misc/luarocks/luarocks-nix.nix { });
 
+  awesome-wm-widgets = callPackage (
+    {
+      lua,
+      lib,
+      stdenv,
+      fetchFromGitHub,
+    }:
+
+    stdenv.mkDerivation {
+      pname = "awesome-wm-widgets";
+      version = "0-unstable-2024-02-15";
+
+      src = fetchFromGitHub {
+        owner = "streetturtle";
+        repo = "awesome-wm-widgets";
+        rev = "2a27e625056c50b40b1519eed623da253d36cc27";
+        hash = "sha256-ejihBFxTtuZl/KJa9BalZ8JISAjn9XWmirK37O169lw=";
+      };
+
+      installPhase = ''
+        runHook preInstall
+
+        target=$out/lib/lua/${lua.luaversion}/awesome-wm-widgets
+        mkdir -p $target
+        cp -r $src/* $target
+
+        runHook postInstall
+      '';
+
+      meta = with lib; {
+        description = "Widgets for Awesome window manager";
+        homepage = "https://github.com/streetturtle/awesome-wm-widgets";
+        license = licenses.mit;
+        maintainers = with maintainers; [ averdow ];
+      };
+    }
+  );
+
   lua-pam = callPackage (
     {
       fetchFromGitHub,
