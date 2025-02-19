@@ -110,7 +110,7 @@ rec {
         maintainers = with maintainers; [ averdow ];
       };
     }
-  );
+  ) { };
 
   lua-pam = callPackage (
     {
