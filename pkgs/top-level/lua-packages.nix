@@ -90,7 +90,7 @@ rec {
         owner = "streetturtle";
         repo = "awesome-wm-widgets";
         rev = "2a27e625056c50b40b1519eed623da253d36cc27";
-        hash = "sha256-XjihBFxTtuZl/KJa9BalZ8JISAjn9XWmirK37O169lw=";
+        hash = "sha256-qz/kUIpuhWwTLbwbaES32wGKe4D2hfz90dnq+mrHrj0=";
       };
 
       installPhase = ''
